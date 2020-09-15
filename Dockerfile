@@ -1,6 +1,6 @@
 FROM node:10-alpine
 
-RUN apk add --no-cache make
+RUN apk add --no-cache make python
 
 WORKDIR /home/node/app
 COPY src /home/node/app/src
