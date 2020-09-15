@@ -1,5 +1,7 @@
 FROM node:10-alpine
 
+RUN apk add --no-cache make
+
 WORKDIR /home/node/app
 COPY src /home/node/app/src
 COPY package.json /home/node/app/
