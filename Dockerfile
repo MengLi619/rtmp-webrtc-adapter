@@ -11,4 +11,4 @@ COPY tsconfig.json /home/node/app/
 RUN npm ci
 RUN npm run build
 
-ENTRYPOINT ['npm', 'start']
+ENTRYPOINT ['sh', '-c', 'npm start']
