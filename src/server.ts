@@ -3,7 +3,6 @@ import * as express from 'express';
 import * as http from 'http';
 import * as socketIO from 'socket.io';
 import * as child_process from 'child_process';
-import { raw } from 'express';
 
 interface Source {
   name: string;
@@ -14,6 +13,7 @@ const PORT = process.env.PORT || 3000;
 const RTC_MIN_PORT = Number(process.env.RTC_MIN_PORT || 30000);
 const RTC_MAX_PORT = Number(process.env.RTC_MAX_PORT || 31000);
 const RTC_LISTEN_IP = process.env.RTC_LISTEN_IP || '127.0.0.1';
+const RTC_ANNOUNCED_IP = process.env.RTC_ANNOUNCED_IP || '0.0.0.0';
 
 let expressApp: express.Express;
 let httpServer: http.Server;
@@ -157,7 +157,7 @@ async function runMediasoupWorker() {
 
 async function createWebRtcTransport() {
   const transport = await mediasoupRouter.createWebRtcTransport({
-    listenIps: [ RTC_LISTEN_IP ],
+    listenIps: [ { ip: RTC_LISTEN_IP, announcedIp: RTC_ANNOUNCED_IP } ],
     enableUdp: true,
     enableTcp: true,
     preferUdp: true,
