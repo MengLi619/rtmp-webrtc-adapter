@@ -1,6 +1,6 @@
 FROM node:10-alpine
 
-RUN apk add --no-cache linux-headers g++ make python2
+RUN apk add --no-cache linux-headers g++ make python2 ffmpeg
 
 WORKDIR /home/node/app
 COPY src /home/node/app/src
