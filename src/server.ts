@@ -13,6 +13,7 @@ interface Source {
 const PORT = process.env.PORT || 3000;
 const RTC_MIN_PORT = Number(process.env.RTC_MIN_PORT || 30000);
 const RTC_MAX_PORT = Number(process.env.RTC_MIN_PORT || 31000);
+const RTC_LISTEN_IP = process.env.RTC_LISTEN_IP || '127.0.0.1';
 
 let expressApp: express.Express;
 let httpServer: http.Server;
@@ -156,7 +157,7 @@ async function runMediasoupWorker() {
 
 async function createWebRtcTransport() {
   const transport = await mediasoupRouter.createWebRtcTransport({
-    listenIps: ['127.0.0.1'],
+    listenIps: [ RTC_LISTEN_IP ],
     enableUdp: true,
     enableTcp: true,
     preferUdp: true,
